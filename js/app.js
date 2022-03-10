@@ -133,10 +133,10 @@ const createPost = (post) => {
                     <small>
                       <a class="post__name--underline" href="#">
                       
-                         ${post.comments?.user}
+                         ${post.comments[0].user}
                          
                       </a>
-                      ${post.comments?.text}
+                      ${post.comments[0].text}
                     </small>
                   </div>
                   <span class="post__date-time">30 minutes ago</span>
@@ -177,6 +177,7 @@ const displayReportedPosts = () => {
 
 const loadPosts = async () =>{
   let data = await fetch('../data/posts.json');
+  console.log(data);
   posts = await data.json();
   showPosts(posts);
 }
