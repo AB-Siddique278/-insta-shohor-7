@@ -18,11 +18,13 @@ const isLiked = (id) => {
 const addToLiked = (id) => {
   //first problem
     likedPostsId.push(id); 
+    console.log(likedPostsId)
     showPosts(posts);
 };
 
 const reportPost = (id) => {
     reportedPostsId.push(id);
+   
     const remainingPosts = posts.filter((post) => !reportedPostsId.includes(post.id));
     showPosts(remainingPosts);
 };
@@ -61,6 +63,7 @@ const switchTab = (id) => {
 
 const createPost = (post) => {
     const image = post.image;
+    
     const div = document.createElement( "article" );
     div.classList.add( "post" );
     div.innerHTML = `
@@ -129,7 +132,9 @@ const createPost = (post) => {
                   <div class="post__description">
                     <small>
                       <a class="post__name--underline" href="#">
-                          ${post.comments?.user}
+                      
+                         ${post.comments?.user}
+                         
                       </a>
                       ${post.comments?.text}
                     </small>
@@ -152,8 +157,10 @@ const showPosts = (posts) => {
 };
 
 const displayLikedPosts = () => {
+  document.getElementById( "liked" ).innerHTML= "";
     const likedPosts = getLikedPosts();
     likedPosts.forEach((post) => {
+      
         const div = createPost(post);
         document.getElementById( "liked" ).appendChild(div);
     });
