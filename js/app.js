@@ -30,8 +30,9 @@ const reportPost = (id) => {
 };
 
 const displayContent = (text) => {
-     return text.length < 20 ? 'text' : text.slice(0, 30) + "<span class='fw-bold'>... read more</span>";
-
+    return text.length <30 ? text
+     : text.slice(0, 30) + "<span class='fw-bold'>... read more</span>";
+    
     
     
 
@@ -167,7 +168,9 @@ const displayLikedPosts = () => {
 };
 
 const displayReportedPosts = () => {
+  document.getElementById( "reported" ).innerHTML=" ";
     const reportedPosts = getReportedPosts();
+
     console.log(reportedPosts);
     reportedPosts.forEach((post) => {
         const div = createPost(post);
@@ -177,7 +180,7 @@ const displayReportedPosts = () => {
 
 const loadPosts = async () =>{
   let data = await fetch('../data/posts.json');
-  console.log(data);
+  
   posts = await data.json();
   showPosts(posts);
 }
